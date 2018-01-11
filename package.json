@@ -1,0 +1,19 @@
+{
+  "name": "my-first-react-app",
+  "version": "0.1.4",
+  "description": "My fist react app for learning reactjs",
+  "author": "Thanh",
+  "scripts": {
+    "start": "node_modules/.bin/webpack-dev-server --progress"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.*",
+    "babel-loader": "^5.3.*",
+    "webpack": "^1.12.*",
+    "webpack-dev-server": "^1.10.*"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "react": "^0.13.*"
+  }
+}
