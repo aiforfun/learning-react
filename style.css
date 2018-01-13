@@ -54,9 +54,9 @@ margin: 0;
   border-bottom: solid 5px transparent;
 }
 .card__title:before { display: inline-block; width: 1em;
-content: '';
+content: '\25b6';
 }
-.card__title--is-open:before { content: '';
+.card__title--is-open:before { content: '\25bc';
 }
 .checklist__task:first-child {
   margin-top: 10px;
