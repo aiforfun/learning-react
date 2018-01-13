@@ -9,7 +9,7 @@ install:
 
 before_script:
 script:
-  - python s3deploy.py .
+  - python s3deploy.py public
 
 after_success:
 after_failure:

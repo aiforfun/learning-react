@@ -65,5 +65,12 @@ content: '\25b6';
 }
 .checklist__task--remove:after{ display: inline-block;
 color: #d66;
-content: "+";
+content: "\00d7";
+}
+.checklist--add-task {
+  border: 1px dashed #bbb;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 3px;
 }

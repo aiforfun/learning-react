@@ -1,2 +1,5 @@
 For css :before :after content code
 https://brajeshwar.github.io/entities/
+
+Getting Started Quickly
+https://github.com/pro-react/react-app-boilerplate
