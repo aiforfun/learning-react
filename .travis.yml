@@ -1,0 +1,21 @@
+language: python
+branches:
+  only:
+    - master
+
+before_install:
+install:
+  pip install boto
+
+before_script:
+script:
+  - python s3deploy.py .
+
+after_success:
+after_failure:
+
+#before_deploy
+#deploy
+#after_deploy
+
+after_script:
