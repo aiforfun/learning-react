@@ -1,5 +1,9 @@
 import React from 'react';
+import { render } from 'react-dom';
 import KanbanBoard from './KanbanBoard';
+
+//import ContactsApp from './contactApp/App';
+
 let cardsList = [
   {
     id: 1,
@@ -11,7 +15,7 @@ let cardsList = [
   },
   {
     id: 2,
-    title: "Write some code !!",
+    title: "Write some code !",
     description: "Code along with the samples in the book. The complete source can be found at [github](https://github.com/pro-react) ",
     color: '#3A7E28',
     status: "todo",
@@ -32,6 +36,14 @@ let cardsList = [
         done: false }
       ]
     },
+    {
+      id: 3,
+      title: "Component Composition Strategies and Best Practices",
+      description: "This section will cover strategies and best practices for creating React applications by composing components. You will discuss how to achieve state management, data fetching, and control over user interactions in a structured and organized way.",
+      color: '#BD8D31',
+      status: "in-progress",
+      tasks: []
+    },
   ];
 
-React.render(<KanbanBoard cards={cardsList} />, document.getElementById('root'));
+render(<KanbanBoard cards={cardsList} />, document.getElementById('root'));
