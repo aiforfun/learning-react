@@ -1,4 +1,5 @@
 # This project is for learning ReactJS, follow Pro-React Book
+http://kanban.aiforfun.com/
 
 # Set proxy for npm
 $npm config set proxy http://localhost:3128
