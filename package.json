@@ -18,6 +18,7 @@
     "marked": "^0.3.12",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.2.0",
     "whatwg-fetch": "^2.0.3"
   }
