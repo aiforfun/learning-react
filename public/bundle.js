@@ -42,14 +42,14 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(1);
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -61,9 +61,9 @@
 
 	var _reactDom = __webpack_require__(13);
 
-	var _KanbanBoard = __webpack_require__(28);
+	var _KanbanBoardContainer = __webpack_require__(28);
 
-	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
+	var _KanbanBoardContainer2 = _interopRequireDefault(_KanbanBoardContainer);
 
 	//import ContactsApp from './contactApp/App';
 
@@ -100,12 +100,12 @@
 	  status: "in-progress",
 	  tasks: []
 	}];
+	(0, _reactDom.render)(_react2['default'].createElement(_KanbanBoardContainer2['default'], null), document.getElementById('root'));
+	//render(<KanbanBoard cards={cardsList} />, document.getElementById('root'));
 
-	(0, _reactDom.render)(_react2['default'].createElement(_KanbanBoard2['default'], { cards: cardsList }), document.getElementById('root'));
-
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
@@ -116,9 +116,9 @@
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// shim for using process in browser
 	'use strict';
@@ -308,9 +308,9 @@
 	    return 0;
 	};
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/** @license React v16.2.0
 	 * react.production.min.js
@@ -418,9 +418,9 @@
 	    V = Object.freeze({ "default": U }),
 	    W = V && U || V;module.exports = W["default"] ? W["default"] : W;
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	object-assign
@@ -512,9 +512,9 @@
 		return to;
 	};
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -535,9 +535,9 @@
 	module.exports = emptyObject;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 
@@ -576,9 +576,9 @@
 
 	module.exports = emptyFunction;
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/** @license React v16.2.0
 	 * react.development.js
@@ -1933,9 +1933,9 @@
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -1992,9 +1992,9 @@
 	module.exports = invariant;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright (c) 2014-present, Facebook, Inc.
@@ -2060,9 +2060,9 @@
 	module.exports = warning;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -2125,9 +2125,9 @@
 	module.exports = checkPropTypes;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -2142,9 +2142,9 @@
 
 	module.exports = ReactPropTypesSecret;
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
@@ -2183,9 +2183,9 @@
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/** @license React v16.2.0
 	 * react-dom.production.min.js
@@ -4040,9 +4040,9 @@
 	Z.injectIntoDevTools({ findFiberByHostInstance: pb, bundleType: 0, version: "16.2.0", rendererPackageName: "react-dom" });var Tg = Object.freeze({ "default": Sg }),
 	    Ug = Tg && Sg || Tg;module.exports = Ug["default"] ? Ug["default"] : Ug;
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -4078,9 +4078,9 @@
 
 	module.exports = ExecutionEnvironment;
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
@@ -4158,9 +4158,9 @@
 	module.exports = EventListener;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -4199,9 +4199,9 @@
 
 	module.exports = getActiveElement;
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -4269,9 +4269,9 @@
 
 	module.exports = shallowEqual;
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -4322,9 +4322,9 @@
 
 	module.exports = containsNode;
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -4349,9 +4349,9 @@
 
 	module.exports = isTextNode;
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -4376,9 +4376,9 @@
 
 	module.exports = isNode;
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -4405,9 +4405,9 @@
 
 	module.exports = focusNode;
 
-/***/ },
+/***/ }),
 /* 23 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/** @license React v16.2.0
 	 * react-dom.development.js
@@ -7388,9 +7388,9 @@
 	var reactDom=ReactDOM$3['default']?ReactDOM$3['default']:ReactDOM$3;module.exports = reactDom;})();}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
+/***/ }),
 /* 24 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -7429,9 +7429,9 @@
 
 	module.exports = hyphenateStyleName;
 
-/***/ },
+/***/ }),
 /* 25 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -7464,9 +7464,9 @@
 
 	module.exports = hyphenate;
 
-/***/ },
+/***/ }),
 /* 26 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -7506,9 +7506,9 @@
 
 	module.exports = camelizeStyleName;
 
-/***/ },
+/***/ }),
 /* 27 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 
@@ -7540,9 +7540,9 @@
 
 	module.exports = camelize;
 
-/***/ },
+/***/ }),
 /* 28 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -7564,11 +7564,87 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(29);
+	var _KanbanBoard = __webpack_require__(29);
+
+	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
+
+	__webpack_require__(37);
+
+	// If you're running the server locally, the URL will be, by default, localhost:3000
+	// Also, the local server doesn't need an authorization header.
+	var API_URL = './kanban.json';
+	var API_HEADERS = {
+	  'Content-Type': 'application/json',
+	  Authorization: 'any-string-you-like' // The Authorization is not needed for local server
+	};
+
+	var KanbanBoardContainer = (function (_Component) {
+	  _inherits(KanbanBoardContainer, _Component);
+
+	  function KanbanBoardContainer() {
+	    _classCallCheck(this, KanbanBoardContainer);
+
+	    _get(Object.getPrototypeOf(KanbanBoardContainer.prototype), 'constructor', this).apply(this, arguments);
+	    this.state = {
+	      cards: []
+	    };
+	  }
+
+	  _createClass(KanbanBoardContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this = this;
+
+	      fetch(API_URL, { headers: API_HEADERS }).then(function (response) {
+	        return response.json();
+	      }).then(function (responseData) {
+	        _this.setState({ cards: responseData });
+	      })['catch'](function (error) {
+	        console.log('Error fetching and parsing data', error);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(_KanbanBoard2['default'], { cards: this.state.cards });
+	    }
+	  }]);
+
+	  return KanbanBoardContainer;
+	})(_react.Component);
+
+	exports['default'] = KanbanBoardContainer;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(30);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _List = __webpack_require__(32);
+	var _List = __webpack_require__(33);
 
 	var _List2 = _interopRequireDefault(_List);
 
@@ -7610,9 +7686,9 @@
 	exports['default'] = KanbanBoard;
 	module.exports = exports['default'];
 
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -7633,17 +7709,17 @@
 	  // By explicitly using `prop-types` you are opting into new development behavior.
 	  // http://fb.me/prop-types-in-prod
 	  var throwOnDirectAccess = true;
-	  module.exports = __webpack_require__(30)(isValidElement, throwOnDirectAccess);
+	  module.exports = __webpack_require__(31)(isValidElement, throwOnDirectAccess);
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(31)();
+	  module.exports = __webpack_require__(32)();
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -8163,9 +8239,9 @@
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -8221,9 +8297,9 @@
 	  return ReactPropTypes;
 	};
 
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -8245,11 +8321,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(29);
+	var _propTypes = __webpack_require__(30);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Card = __webpack_require__(33);
+	var _Card = __webpack_require__(34);
 
 	var _Card2 = _interopRequireDefault(_Card);
 
@@ -8297,9 +8373,9 @@
 	exports['default'] = List;
 	module.exports = exports['default'];
 
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -8321,15 +8397,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(29);
+	var _propTypes = __webpack_require__(30);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _CheckList = __webpack_require__(34);
+	var _CheckList = __webpack_require__(35);
 
 	var _CheckList2 = _interopRequireDefault(_CheckList);
 
-	var _marked = __webpack_require__(35);
+	var _marked = __webpack_require__(36);
 
 	var _marked2 = _interopRequireDefault(_marked);
 
@@ -8408,9 +8484,9 @@
 	exports['default'] = Card;
 	module.exports = exports['default'];
 
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -8432,7 +8508,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(29);
+	var _propTypes = __webpack_require__(30);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -8485,9 +8561,9 @@
 	exports['default'] = CheckList;
 	module.exports = exports['default'];
 
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * marked - a markdown parser
@@ -9705,5 +9781,469 @@
 	})());
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
-/***/ }
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	(function (self) {
+	  'use strict';
+
+	  if (self.fetch) {
+	    return;
+	  }
+
+	  var support = {
+	    searchParams: 'URLSearchParams' in self,
+	    iterable: 'Symbol' in self && 'iterator' in Symbol,
+	    blob: 'FileReader' in self && 'Blob' in self && (function () {
+	      try {
+	        new Blob();
+	        return true;
+	      } catch (e) {
+	        return false;
+	      }
+	    })(),
+	    formData: 'FormData' in self,
+	    arrayBuffer: 'ArrayBuffer' in self
+	  };
+
+	  if (support.arrayBuffer) {
+	    var viewClasses = ['[object Int8Array]', '[object Uint8Array]', '[object Uint8ClampedArray]', '[object Int16Array]', '[object Uint16Array]', '[object Int32Array]', '[object Uint32Array]', '[object Float32Array]', '[object Float64Array]'];
+
+	    var isDataView = function isDataView(obj) {
+	      return obj && DataView.prototype.isPrototypeOf(obj);
+	    };
+
+	    var isArrayBufferView = ArrayBuffer.isView || function (obj) {
+	      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1;
+	    };
+	  }
+
+	  function normalizeName(name) {
+	    if (typeof name !== 'string') {
+	      name = String(name);
+	    }
+	    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+	      throw new TypeError('Invalid character in header field name');
+	    }
+	    return name.toLowerCase();
+	  }
+
+	  function normalizeValue(value) {
+	    if (typeof value !== 'string') {
+	      value = String(value);
+	    }
+	    return value;
+	  }
+
+	  // Build a destructive iterator for the value list
+	  function iteratorFor(items) {
+	    var iterator = {
+	      next: function next() {
+	        var value = items.shift();
+	        return { done: value === undefined, value: value };
+	      }
+	    };
+
+	    if (support.iterable) {
+	      iterator[Symbol.iterator] = function () {
+	        return iterator;
+	      };
+	    }
+
+	    return iterator;
+	  }
+
+	  function Headers(headers) {
+	    this.map = {};
+
+	    if (headers instanceof Headers) {
+	      headers.forEach(function (value, name) {
+	        this.append(name, value);
+	      }, this);
+	    } else if (Array.isArray(headers)) {
+	      headers.forEach(function (header) {
+	        this.append(header[0], header[1]);
+	      }, this);
+	    } else if (headers) {
+	      Object.getOwnPropertyNames(headers).forEach(function (name) {
+	        this.append(name, headers[name]);
+	      }, this);
+	    }
+	  }
+
+	  Headers.prototype.append = function (name, value) {
+	    name = normalizeName(name);
+	    value = normalizeValue(value);
+	    var oldValue = this.map[name];
+	    this.map[name] = oldValue ? oldValue + ',' + value : value;
+	  };
+
+	  Headers.prototype['delete'] = function (name) {
+	    delete this.map[normalizeName(name)];
+	  };
+
+	  Headers.prototype.get = function (name) {
+	    name = normalizeName(name);
+	    return this.has(name) ? this.map[name] : null;
+	  };
+
+	  Headers.prototype.has = function (name) {
+	    return this.map.hasOwnProperty(normalizeName(name));
+	  };
+
+	  Headers.prototype.set = function (name, value) {
+	    this.map[normalizeName(name)] = normalizeValue(value);
+	  };
+
+	  Headers.prototype.forEach = function (callback, thisArg) {
+	    for (var name in this.map) {
+	      if (this.map.hasOwnProperty(name)) {
+	        callback.call(thisArg, this.map[name], name, this);
+	      }
+	    }
+	  };
+
+	  Headers.prototype.keys = function () {
+	    var items = [];
+	    this.forEach(function (value, name) {
+	      items.push(name);
+	    });
+	    return iteratorFor(items);
+	  };
+
+	  Headers.prototype.values = function () {
+	    var items = [];
+	    this.forEach(function (value) {
+	      items.push(value);
+	    });
+	    return iteratorFor(items);
+	  };
+
+	  Headers.prototype.entries = function () {
+	    var items = [];
+	    this.forEach(function (value, name) {
+	      items.push([name, value]);
+	    });
+	    return iteratorFor(items);
+	  };
+
+	  if (support.iterable) {
+	    Headers.prototype[Symbol.iterator] = Headers.prototype.entries;
+	  }
+
+	  function consumed(body) {
+	    if (body.bodyUsed) {
+	      return Promise.reject(new TypeError('Already read'));
+	    }
+	    body.bodyUsed = true;
+	  }
+
+	  function fileReaderReady(reader) {
+	    return new Promise(function (resolve, reject) {
+	      reader.onload = function () {
+	        resolve(reader.result);
+	      };
+	      reader.onerror = function () {
+	        reject(reader.error);
+	      };
+	    });
+	  }
+
+	  function readBlobAsArrayBuffer(blob) {
+	    var reader = new FileReader();
+	    var promise = fileReaderReady(reader);
+	    reader.readAsArrayBuffer(blob);
+	    return promise;
+	  }
+
+	  function readBlobAsText(blob) {
+	    var reader = new FileReader();
+	    var promise = fileReaderReady(reader);
+	    reader.readAsText(blob);
+	    return promise;
+	  }
+
+	  function readArrayBufferAsText(buf) {
+	    var view = new Uint8Array(buf);
+	    var chars = new Array(view.length);
+
+	    for (var i = 0; i < view.length; i++) {
+	      chars[i] = String.fromCharCode(view[i]);
+	    }
+	    return chars.join('');
+	  }
+
+	  function bufferClone(buf) {
+	    if (buf.slice) {
+	      return buf.slice(0);
+	    } else {
+	      var view = new Uint8Array(buf.byteLength);
+	      view.set(new Uint8Array(buf));
+	      return view.buffer;
+	    }
+	  }
+
+	  function Body() {
+	    this.bodyUsed = false;
+
+	    this._initBody = function (body) {
+	      this._bodyInit = body;
+	      if (!body) {
+	        this._bodyText = '';
+	      } else if (typeof body === 'string') {
+	        this._bodyText = body;
+	      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+	        this._bodyBlob = body;
+	      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+	        this._bodyFormData = body;
+	      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+	        this._bodyText = body.toString();
+	      } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+	        this._bodyArrayBuffer = bufferClone(body.buffer);
+	        // IE 10-11 can't handle a DataView body.
+	        this._bodyInit = new Blob([this._bodyArrayBuffer]);
+	      } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+	        this._bodyArrayBuffer = bufferClone(body);
+	      } else {
+	        throw new Error('unsupported BodyInit type');
+	      }
+
+	      if (!this.headers.get('content-type')) {
+	        if (typeof body === 'string') {
+	          this.headers.set('content-type', 'text/plain;charset=UTF-8');
+	        } else if (this._bodyBlob && this._bodyBlob.type) {
+	          this.headers.set('content-type', this._bodyBlob.type);
+	        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+	          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+	        }
+	      }
+	    };
+
+	    if (support.blob) {
+	      this.blob = function () {
+	        var rejected = consumed(this);
+	        if (rejected) {
+	          return rejected;
+	        }
+
+	        if (this._bodyBlob) {
+	          return Promise.resolve(this._bodyBlob);
+	        } else if (this._bodyArrayBuffer) {
+	          return Promise.resolve(new Blob([this._bodyArrayBuffer]));
+	        } else if (this._bodyFormData) {
+	          throw new Error('could not read FormData body as blob');
+	        } else {
+	          return Promise.resolve(new Blob([this._bodyText]));
+	        }
+	      };
+
+	      this.arrayBuffer = function () {
+	        if (this._bodyArrayBuffer) {
+	          return consumed(this) || Promise.resolve(this._bodyArrayBuffer);
+	        } else {
+	          return this.blob().then(readBlobAsArrayBuffer);
+	        }
+	      };
+	    }
+
+	    this.text = function () {
+	      var rejected = consumed(this);
+	      if (rejected) {
+	        return rejected;
+	      }
+
+	      if (this._bodyBlob) {
+	        return readBlobAsText(this._bodyBlob);
+	      } else if (this._bodyArrayBuffer) {
+	        return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer));
+	      } else if (this._bodyFormData) {
+	        throw new Error('could not read FormData body as text');
+	      } else {
+	        return Promise.resolve(this._bodyText);
+	      }
+	    };
+
+	    if (support.formData) {
+	      this.formData = function () {
+	        return this.text().then(decode);
+	      };
+	    }
+
+	    this.json = function () {
+	      return this.text().then(JSON.parse);
+	    };
+
+	    return this;
+	  }
+
+	  // HTTP methods whose capitalization should be normalized
+	  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT'];
+
+	  function normalizeMethod(method) {
+	    var upcased = method.toUpperCase();
+	    return methods.indexOf(upcased) > -1 ? upcased : method;
+	  }
+
+	  function Request(input, options) {
+	    options = options || {};
+	    var body = options.body;
+
+	    if (input instanceof Request) {
+	      if (input.bodyUsed) {
+	        throw new TypeError('Already read');
+	      }
+	      this.url = input.url;
+	      this.credentials = input.credentials;
+	      if (!options.headers) {
+	        this.headers = new Headers(input.headers);
+	      }
+	      this.method = input.method;
+	      this.mode = input.mode;
+	      if (!body && input._bodyInit != null) {
+	        body = input._bodyInit;
+	        input.bodyUsed = true;
+	      }
+	    } else {
+	      this.url = String(input);
+	    }
+
+	    this.credentials = options.credentials || this.credentials || 'omit';
+	    if (options.headers || !this.headers) {
+	      this.headers = new Headers(options.headers);
+	    }
+	    this.method = normalizeMethod(options.method || this.method || 'GET');
+	    this.mode = options.mode || this.mode || null;
+	    this.referrer = null;
+
+	    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+	      throw new TypeError('Body not allowed for GET or HEAD requests');
+	    }
+	    this._initBody(body);
+	  }
+
+	  Request.prototype.clone = function () {
+	    return new Request(this, { body: this._bodyInit });
+	  };
+
+	  function decode(body) {
+	    var form = new FormData();
+	    body.trim().split('&').forEach(function (bytes) {
+	      if (bytes) {
+	        var split = bytes.split('=');
+	        var name = split.shift().replace(/\+/g, ' ');
+	        var value = split.join('=').replace(/\+/g, ' ');
+	        form.append(decodeURIComponent(name), decodeURIComponent(value));
+	      }
+	    });
+	    return form;
+	  }
+
+	  function parseHeaders(rawHeaders) {
+	    var headers = new Headers();
+	    rawHeaders.split(/\r?\n/).forEach(function (line) {
+	      var parts = line.split(':');
+	      var key = parts.shift().trim();
+	      if (key) {
+	        var value = parts.join(':').trim();
+	        headers.append(key, value);
+	      }
+	    });
+	    return headers;
+	  }
+
+	  Body.call(Request.prototype);
+
+	  function Response(bodyInit, options) {
+	    if (!options) {
+	      options = {};
+	    }
+
+	    this.type = 'default';
+	    this.status = 'status' in options ? options.status : 200;
+	    this.ok = this.status >= 200 && this.status < 300;
+	    this.statusText = 'statusText' in options ? options.statusText : 'OK';
+	    this.headers = new Headers(options.headers);
+	    this.url = options.url || '';
+	    this._initBody(bodyInit);
+	  }
+
+	  Body.call(Response.prototype);
+
+	  Response.prototype.clone = function () {
+	    return new Response(this._bodyInit, {
+	      status: this.status,
+	      statusText: this.statusText,
+	      headers: new Headers(this.headers),
+	      url: this.url
+	    });
+	  };
+
+	  Response.error = function () {
+	    var response = new Response(null, { status: 0, statusText: '' });
+	    response.type = 'error';
+	    return response;
+	  };
+
+	  var redirectStatuses = [301, 302, 303, 307, 308];
+
+	  Response.redirect = function (url, status) {
+	    if (redirectStatuses.indexOf(status) === -1) {
+	      throw new RangeError('Invalid status code');
+	    }
+
+	    return new Response(null, { status: status, headers: { location: url } });
+	  };
+
+	  self.Headers = Headers;
+	  self.Request = Request;
+	  self.Response = Response;
+
+	  self.fetch = function (input, init) {
+	    return new Promise(function (resolve, reject) {
+	      var request = new Request(input, init);
+	      var xhr = new XMLHttpRequest();
+
+	      xhr.onload = function () {
+	        var options = {
+	          status: xhr.status,
+	          statusText: xhr.statusText,
+	          headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+	        };
+	        options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL');
+	        var body = 'response' in xhr ? xhr.response : xhr.responseText;
+	        resolve(new Response(body, options));
+	      };
+
+	      xhr.onerror = function () {
+	        reject(new TypeError('Network request failed'));
+	      };
+
+	      xhr.ontimeout = function () {
+	        reject(new TypeError('Network request failed'));
+	      };
+
+	      xhr.open(request.method, request.url, true);
+
+	      if (request.credentials === 'include') {
+	        xhr.withCredentials = true;
+	      }
+
+	      if ('responseType' in xhr && support.blob) {
+	        xhr.responseType = 'blob';
+	      }
+
+	      request.headers.forEach(function (value, name) {
+	        xhr.setRequestHeader(name, value);
+	      });
+
+	      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit);
+	    });
+	  };
+	  self.fetch.polyfill = true;
+	})(typeof self !== 'undefined' ? self : undefined);
+
+/***/ })
 /******/ ]);
