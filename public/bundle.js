@@ -7577,6 +7577,7 @@
 	        return response.json();
 	      }).then(function (responseData) {
 	        _this.setState({ cards: responseData });
+	        window.state = _this.state;
 	      })['catch'](function (error) {
 	        console.log('Error fetching and parsing data', error);
 	      });
@@ -7585,6 +7586,10 @@
 	    key: 'addTask',
 	    value: function addTask(cardId, taskName) {
 	      var _this2 = this;
+
+	      // Keep a reference to the original state prior to the mutations
+	      // in case you need to revert the optimistic changes in the UI
+	      var prevState = this.state;
 
 	      // Find the index of the card
 	      var cardIndex = this.state.cards.findIndex(function (card) {
@@ -7607,22 +7612,37 @@
 	        headers: API_HEADERS,
 	        body: JSON.stringify(newTask)
 	      }).then(function (response) {
-	        return response.json();
+	        if (response.ok) {
+	          return response.json();
+	        } else {
+	          // Throw an error if server response wasn't 'ok'
+	          // so you can revert back the optimistic changes
+	          // made to the UI.
+	          throw new Error("Server response wasn't OK");
+	        }
 	      }).then(function (responseData) {
 	        // When the server returns the definitive ID
 	        // used for the new Task on the server, update it on React
-	        console.log("NewID from Server:" + responseData.id);
 	        newTask.id = responseData.id;
 	        _this2.setState({ cards: nextState });
+	      })['catch'](function (error) {
+	        console.error("Fetch error:", error);
+	        _this2.setState(prevState);
 	      });
 	    }
 	  }, {
 	    key: 'deleteTask',
 	    value: function deleteTask(cardId, taskId, taskIndex) {
+	      var _this3 = this;
+
 	      // Find the index of the card
 	      var cardIndex = this.state.cards.findIndex(function (card) {
 	        return card.id == cardId;
 	      });
+
+	      // Keep a reference to the original state prior to the mutations
+	      // in case you need to revert the optimistic changes in the UI
+	      var prevState = this.state;
 
 	      // Create a new object without the task
 	      var nextState = (0, _immutabilityHelper2['default'])(this.state.cards, _defineProperty({}, cardIndex, {
@@ -7636,11 +7656,27 @@
 	      fetch(API_URL + '/cards/' + cardId + '/tasks/' + taskId, {
 	        method: 'delete',
 	        headers: API_HEADERS
+	      }).then(function (response) {
+	        if (!response.ok) {
+	          // Throw an error if server response wasn't 'ok'
+	          // so you can revert back the optimistic changes
+	          // made to the UI.
+	          throw new Error("Server response wasn't OK");
+	        }
+	      })['catch'](function (error) {
+	        console.error("Fetch error:", error);
+	        _this3.setState(prevState);
 	      });
 	    }
 	  }, {
 	    key: 'toggleTask',
 	    value: function toggleTask(cardId, taskId, taskIndex) {
+	      var _this4 = this;
+
+	      // Keep a reference to the original state prior to the mutations
+	      // in case you need to revert the optimistic changes in the UI
+	      var prevState = this.state;
+
 	      // Find the index of the card
 	      var cardIndex = this.state.cards.findIndex(function (card) {
 	        return card.id == cardId;
@@ -7666,6 +7702,16 @@
 	        method: 'put',
 	        headers: API_HEADERS,
 	        body: JSON.stringify({ done: newDoneValue })
+	      }).then(function (response) {
+	        if (!response.ok) {
+	          // Throw an error if server response wasn't 'ok'
+	          // so you can revert back the optimistic changes
+	          // made to the UI.
+	          throw new Error("Server response wasn't OK");
+	        }
+	      })['catch'](function (error) {
+	        console.error("Fetch error:", error);
+	        _this4.setState(prevState);
 	      });
 	    }
 	  }, {

@@ -24,6 +24,7 @@ class KanbanBoardContainer extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({cards: responseData});
+        window.state = this.state;
       })
       .catch((error) => {
         console.log('Error fetching and parsing data', error);
@@ -31,6 +32,10 @@ class KanbanBoardContainer extends Component {
   }
 
   addTask(cardId, taskName){
+    // Keep a reference to the original state prior to the mutations
+    // in case you need to revert the optimistic changes in the UI
+    let prevState = this.state;
+
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
 
@@ -52,19 +57,35 @@ class KanbanBoardContainer extends Component {
       headers: API_HEADERS,
       body: JSON.stringify(newTask)
     })
-    .then((response) => response.json())
+    .then((response) => {
+      if(response.ok){
+        return response.json();
+      } else {
+        // Throw an error if server response wasn't 'ok'
+        // so you can revert back the optimistic changes
+        // made to the UI.
+        throw new Error("Server response wasn't OK");
+      }
+    })
     .then((responseData) => {
       // When the server returns the definitive ID
       // used for the new Task on the server, update it on React
-      console.log("NewID from Server:" + responseData.id)
       newTask.id=responseData.id;
       this.setState({cards:nextState});
+    })
+    .catch((error) => {
+      console.error("Fetch error:",error);
+      this.setState(prevState);
     });
 
   }
   deleteTask(cardId, taskId, taskIndex){
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
+
+    // Keep a reference to the original state prior to the mutations
+    // in case you need to revert the optimistic changes in the UI
+    let prevState = this.state;
 
     // Create a new object without the task
     let nextState = update(this.state.cards, {
@@ -80,9 +101,25 @@ class KanbanBoardContainer extends Component {
     fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
       method: 'delete',
       headers: API_HEADERS
+    })
+    .then((response) => {
+      if(!response.ok){
+        // Throw an error if server response wasn't 'ok'
+        // so you can revert back the optimistic changes
+        // made to the UI.
+        throw new Error("Server response wasn't OK")
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:",error);
+      this.setState(prevState);
     });
   }
   toggleTask(cardId, taskId, taskIndex){
+    // Keep a reference to the original state prior to the mutations
+    // in case you need to revert the optimistic changes in the UI
+    let prevState = this.state;
+
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
     // Save a reference to the task's 'done' value
@@ -110,6 +147,18 @@ class KanbanBoardContainer extends Component {
       method: 'put',
       headers: API_HEADERS,
       body: JSON.stringify({done:newDoneValue})
+    })
+    .then((response) => {
+      if(!response.ok){
+        // Throw an error if server response wasn't 'ok'
+        // so you can revert back the optimistic changes 
+        // made to the UI.
+        throw new Error("Server response wasn't OK")
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:",error);
+      this.setState(prevState);
     });
   }
 
