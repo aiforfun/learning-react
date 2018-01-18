@@ -16,3 +16,8 @@ React’s add-on package provides an immutability helper called update. The upda
 To begin with, you’ll need to install and require the library:
 npm install –save react-addons-update
 import update from 'react-addons-update';
+
+Note: at the time of this writing, only Chrome and Firefox supported the new methods array.prototype.find and array.prototype.findIndex, so make sure to install babel-polyfill:
+npm install --save babel-polyfill
+Then, in your file, import it using: 
+import 'babel-polyfill'
