@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import KanbanBoard from './KanbanBoard';
+import update from 'immutability-helper'; //React Immutability Helper
+// Polyfills
 import 'whatwg-fetch'; // Need for browsers do not support fetch
 import 'babel-polyfill'; // Need for browser do not support findIndex
-import update from 'immutability-helper'; //React Immutability Helper
+
 
 // If you're running the server locally, the URL will be, by default, localhost:3000
 // Also, the local server doesn't need an authorization header.
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
   'Content-Type': 'application/json',
-  Authorization: 'abc'// The Authorization is not needed for local server
+  Authorization: 'abc'// The Authorization is not needed for local server 'any-string-you-like'
 };
 
 class KanbanBoardContainer extends Component {
@@ -79,6 +81,7 @@ class KanbanBoardContainer extends Component {
     });
 
   }
+
   deleteTask(cardId, taskId, taskIndex){
     // Find the index of the card
     let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
@@ -115,6 +118,7 @@ class KanbanBoardContainer extends Component {
       this.setState(prevState);
     });
   }
+
   toggleTask(cardId, taskId, taskIndex){
     // Keep a reference to the original state prior to the mutations
     // in case you need to revert the optimistic changes in the UI
@@ -151,7 +155,7 @@ class KanbanBoardContainer extends Component {
     .then((response) => {
       if(!response.ok){
         // Throw an error if server response wasn't 'ok'
-        // so you can revert back the optimistic changes 
+        // so you can revert back the optimistic changes
         // made to the UI.
         throw new Error("Server response wasn't OK")
       }
@@ -162,13 +166,71 @@ class KanbanBoardContainer extends Component {
     });
   }
 
+  updateCardStatus(cardId, listId){
+    // Find the index of the card
+    let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
+    // Get the current card
+    let card = this.state.cards[cardIndex];
+
+
+    // Only proceed if hovering over a different list
+    if(card.status !== listId){
+      console.log("updateCardStatus: " + cardId + ", from " + card.status + " to " + listId);
+      // Keep a reference to the original state prior to the mutations
+      // in case you need to revert the optimistic changes in the UI
+      let prevState = this.state;
+      // Create a new object and push the new task to the array of tasks
+      let nextState = update(this.state, {
+        cards: {
+          [cardIndex]: {
+            status: { $set: listId }
+          }
+        }
+      });
+      console.log(prevState);
+      console.log(nextState);
+
+      // set the component state to the mutated object
+      this.setState(nextState);
+    }
+  }
+
+  updateCardPosition (cardId , afterId) {
+    // Only proceed if hovering over a different card
+    if(cardId !== afterId) {
+      // Find the index of the card
+      let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
+      // Get the current card
+      let card = this.state.cards[cardIndex];
+      // Find the index of the card the user is hovering over
+      let afterIndex = this.state.cards.findIndex((card)=>card.id == afterId);
+
+      // Keep a reference to the original state prior to the mutations
+      // in case you need to revert the optimistic changes in the UI
+      let prevState = this.state;
+
+      // Use splice to remove the card and reinsert it a the new index
+      let nextState = update(this.state.cards, {
+        $splice: [
+          [cardIndex, 1],
+          [afterIndex, 0, card]
+        ]
+      });
+
+      this.setState(nextState);
+    }
+  }
+
   render() {
     return (
       <KanbanBoard cards={this.state.cards}
                   taskCallbacks={{
                     toggle: this.toggleTask.bind(this),
                     delete: this.deleteTask.bind(this),
-                    add: this.addTask.bind(this) }}/>
+                    add: this.addTask.bind(this) }}
+                  cardCallbacks={{
+                    updateStatus: this.updateCardStatus.bind(this),
+                    updatePosition: this.updateCardPosition.bind(this)}}/>
     )
   }
 }
