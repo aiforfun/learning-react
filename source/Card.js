@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import CheckList from './CheckList';
 import marked from 'marked';
+
 
 let titlePropType = (props, propName, componentName) => {
   if (props[propName]) {
@@ -28,12 +30,16 @@ class Card extends Component {
     let cardDetails;
     if (this.state.showDetails) {
       cardDetails = (
-        <div className="card__details">
-          <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
-          <CheckList cardId={this.props.id}
-            taskCallbacks={this.props.taskCallbacks}
-            tasks={this.props.tasks} />
-        </div>
+        <CSSTransition
+          classNames="toggle"
+          timeout={{ enter: 250, exit: 250 }}>
+          <div className="card__details">
+            <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
+            <CheckList cardId={this.props.id}
+              taskCallbacks={this.props.taskCallbacks}
+              tasks={this.props.tasks} />
+          </div>
+        </CSSTransition>
       );
     }
     let sideColor = {
@@ -51,7 +57,9 @@ class Card extends Component {
         <div className={
           this.state.showDetails? "card__title card__title--is-open" : "card__title"
         } onClick={this.toggleDetails.bind(this)}>{this.props.title}</div>
-        {cardDetails}
+        <TransitionGroup>
+          {cardDetails}
+        </TransitionGroup>
       </div>
     );
   }

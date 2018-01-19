@@ -33,4 +33,12 @@ npm install --save babel-polyfill
 Then, in your file, import it using:
 import 'babel-polyfill'
 
-Note Being an external library, to use react dnd you need to install and declare it as a dependency with npm. the examples in this book use react dnd 2 with an htML5 backend, installed via npm install –-save react-dnd@2.x.x react-dnd-html5-backend@1.x.x.
+To animate the card toggling when showing/hiding details, you will use the React CssTransitionGroup add-on, so let’s begin by installing it on the Kanban project via
+npm install --save react-addons-css- transition-group.
+=> Upgreate to react-transition-group v2x
+Also: https://github.com/reactjs/react-transition-group
+npm install react-transition-group --save
+
+React DnD is a set of React higher-order components to help you build complex drag and drop interfaces while keeping your components decoupled. It is a perfect fit for apps like Trello and Storify, where dragging transfers data between different parts of the application, and the components change their appearance and the application state in response to the drag and drop events.
+npm install --save react-dnd
+npm install --save react-dnd-html5-backend
