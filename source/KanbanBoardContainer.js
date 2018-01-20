@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import KanbanBoard from './KanbanBoard';
+import {throttle} from './utils';
 import update from 'immutability-helper'; //React Immutability Helper
 // Polyfills
 import 'whatwg-fetch'; // Need for browsers do not support fetch
@@ -9,6 +10,7 @@ import 'babel-polyfill'; // Need for browser do not support findIndex
 // If you're running the server locally, the URL will be, by default, localhost:3000
 // Also, the local server doesn't need an authorization header.
 const API_URL = 'http://kanbanapi.pro-react.com';
+//const API_URL = './kanban.json';
 const API_HEADERS = {
   'Content-Type': 'application/json',
   Authorization: 'abc'// The Authorization is not needed for local server 'any-string-you-like'
@@ -20,9 +22,15 @@ class KanbanBoardContainer extends Component {
     this.state = {
       cards:[],
     };
+    // Only call updateCardStatus when arguments change
+    this.updateCardStatus = throttle(this.updateCardStatus.bind(this));
+    // Call updateCardPosition at max every 500ms (or when arguments change)
+    this.updateCardPosition = throttle(this.updateCardPosition.bind(this),500);
   }
+
   componentDidMount(){
     fetch(API_URL+'/cards', {headers: API_HEADERS})
+    //fetch(API_URL, {headers: API_HEADERS})
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({cards: responseData});
@@ -210,15 +218,50 @@ class KanbanBoardContainer extends Component {
       let prevState = this.state;
 
       // Use splice to remove the card and reinsert it a the new index
-      let nextState = update(this.state.cards, {
-        $splice: [
-          [cardIndex, 1],
-          [afterIndex, 0, card]
-        ]
+      let nextState = update(this.state, {
+        cards: {
+          $splice: [
+            [cardIndex, 1],
+            [afterIndex, 0, card]
+          ]
+        }
       });
 
       this.setState(nextState);
     }
+  }
+
+  persistCardDrag (cardId, status) {
+    // Find the index of the card
+    let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
+    // Get the current card
+    let card = this.state.cards[cardIndex];
+
+    fetch(`${API_URL}/cards/${cardId}`, {
+      method: 'put',
+      headers: API_HEADERS,
+      body: JSON.stringify({status: card.status, row_order_position: cardIndex})
+    })
+    .then((response) => {
+      if(!response.ok){
+        // Throw an error if server response wasn't 'ok'
+        // so you can revert back the optimistic changes
+        // made to the UI.
+        throw new Error("Server response wasn't OK");
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:",error);
+      this.setState(
+        update(this.state, {
+          cards: {
+            [cardIndex]: {
+              status: { $set: status }
+            }
+          }
+        })
+      );
+    });
   }
 
   render() {
@@ -229,8 +272,9 @@ class KanbanBoardContainer extends Component {
                     delete: this.deleteTask.bind(this),
                     add: this.addTask.bind(this) }}
                   cardCallbacks={{
-                    updateStatus: this.updateCardStatus.bind(this),
-                    updatePosition: this.updateCardPosition.bind(this)}}/>
+                    updateStatus: this.updateCardStatus,
+                    updatePosition: this.updateCardPosition,
+                    persistCardDrag: this.persistCardDrag.bind(this)}}/>
     )
   }
 }

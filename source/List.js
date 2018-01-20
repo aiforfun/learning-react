@@ -24,6 +24,7 @@ class List extends Component {
       return <Card key={card.id}
                 id={card.id}
                 title={card.title}
+                status={card.status}
                 taskCallbacks={this.props.taskCallbacks}
                 cardCallbacks={this.props.cardCallbacks}
                 description={card.description}
