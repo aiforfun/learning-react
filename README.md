@@ -11,6 +11,11 @@ $npm config rm https-proxy
 
 Getting Started Quickly
 https://github.com/pro-react/react-app-boilerplate
+Update: Facebook released a tool to create React Apps with no need for configurations or boilerplates. If you're just begining to learn React, you might want to use create-react-app instead of using this boilerplate project.
+$npm install -g create-react-app
+$create-react-app my-app
+$cd my-app/
+$npm start
 
 Which Components Should Be Stateful?
 Recognizing which components should own state is often the most challenging part for React newcomers to understand. When in doubt, follow this four-step checklist. For each piece of state in your application,
