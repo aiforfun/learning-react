@@ -6,8 +6,7 @@ import update from 'immutability-helper'; //React Immutability Helper
 import 'whatwg-fetch'; // Need for browsers do not support fetch
 import 'babel-polyfill'; // Need for browser do not support findIndex
 import {
-  Route,
-  Switch
+  Route
 } from 'react-router-dom'
 
 

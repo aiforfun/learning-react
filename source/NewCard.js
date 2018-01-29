@@ -26,11 +26,11 @@ class NewCard extends Component{
   handleSubmit(e){
     e.preventDefault();
     this.props.cardCallbacks.addCard(this.state);
-    this.props.history.pushState(null,'/');
+    this.props.history.push('/');
   }
 
   handleClose(e){
-    this.props.history.pushState(null,'/');
+    this.props.history.push('/');
   }
 
   render(){
@@ -45,7 +45,7 @@ class NewCard extends Component{
 }
 
 NewCard.propTypes = {
-  cardCallbacks: PropTypes.object,
+  props: PropTypes.object
 };
 
 export default NewCard;

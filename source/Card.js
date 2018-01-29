@@ -5,6 +5,9 @@ import CheckList from './CheckList';
 import marked from 'marked';
 import { DragSource, DropTarget } from 'react-dnd';
 import constants from './constants';
+import {
+  Link
+} from 'react-router-dom'
 
 
 let titlePropType = (props, propName, componentName) => {
@@ -88,6 +91,8 @@ class Card extends Component {
     return connectDropTarget(connectDragSource(
       <div className="card">
         <div style={sideColor}/>
+        <div className="card__edit"><Link to={'/edit/'+this.props.id}>&#9998;</Link></div>
+        {/* &#9998; is the HTML entity for the utf-8 pencil character (✎) */}
         <div className={
           this.state.showDetails? "card__title card__title--is-open" : "card__title"
         } onClick={this.toggleDetails.bind(this)}>{this.props.title}</div>

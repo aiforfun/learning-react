@@ -9,14 +9,19 @@ import {
 } from 'react-router-dom'
 import List from './List';
 import NewCard from './NewCard';
+import EditCard from './EditCard';
 
 
 class KanbanBoard extends Component {
   render(){
-    const RouteNewCard = () => {
+    const RouteNewCard = (props) => {
       return (
-        <NewCard cards={this.props.cards}
-                 cardCallbacks={this.props.cardCallbacks}/>
+        <NewCard {...this.props} {...props}/>
+      );
+    };
+    const RouteEditCard = (props) => {
+      return (
+        <EditCard {...this.props} {...props}/>
       );
     };
 
@@ -35,6 +40,7 @@ class KanbanBoard extends Component {
           cards={ this.props.cards.filter((card) => card.status === "done")} />
         <Switch>
           <Route path="/new" component={RouteNewCard}/>
+          <Route path="/edit/:card_id" component={RouteEditCard} />
         </Switch>
       </div>
     );
