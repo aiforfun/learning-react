@@ -47,3 +47,5 @@ npm install react-transition-group --save
 React DnD is a set of React higher-order components to help you build complex drag and drop interfaces while keeping your components decoupled. It is a perfect fit for apps like Trello and Storify, where dragging transfers data between different parts of the application, and the components change their appearance and the application state in response to the drag and drop events.
 npm install --save react-dnd
 npm install --save react-dnd-html5-backend
+
+There are many auto-suggestion libraries available (as a quick search on npmjs.com reveals). In this example, you use react-auto-suggest, so be sure to install it using NPM (npm install –save react-auto- suggest).
