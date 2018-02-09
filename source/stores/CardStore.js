@@ -24,6 +24,18 @@ class CardStore extends ReduceStore {
     switch (action.type) {
       case constants.FETCH_CARDS_SUCCESS:
         return action.payload.response;
+
+      /*
+       * Card Status Toggle
+       */
+      case constants.TOGGLE_CARD_DETAILS:
+        cardIndex = this.getCardIndex(action.payload.cardId);
+        return update(this.getState(), {
+          [cardIndex]: {
+            showDetails: { $apply: (currentValue) => (currentValue !== false)? false : true }
+          }
+        });
+
       /*
        * Card Creation
        */

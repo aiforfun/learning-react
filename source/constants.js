@@ -30,5 +30,7 @@ export default {
 
   TOGGLE_TASK: 'toggle task',
   TOGGLE_TASK_SUCCESS: 'toggle task success',
-  TOGGLE_TASK_ERROR: 'toggle task error'
+  TOGGLE_TASK_ERROR: 'toggle task error',
+
+  TOGGLE_CARD_DETAILS: 'toggle card details',
 };
