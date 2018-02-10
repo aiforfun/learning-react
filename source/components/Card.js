@@ -56,19 +56,13 @@ let collectDrop = (connect, monitor) => {
 }
 
 class Card extends Component {
-  constructor() {
-    super(...arguments);
-     this.state = {
-       showDetails: true
-     };
-  }
   toggleDetails() {
-    this.setState({showDetails: !this.state.showDetails});
+    CardActionCreators.toggleCardDetails(this.props.id);
   }
   render() {
     const { connectDragSource, connectDropTarget } = this.props;
     let cardDetails;
-    if (this.state.showDetails) {
+    if (this.props.showDetails !== false) {
       cardDetails = (
         <CSSTransition
           classNames="toggle"
@@ -96,7 +90,7 @@ class Card extends Component {
         <div className="card__edit"><Link to={'/edit/'+this.props.id}>&#9998;</Link></div>
         {/* &#9998; is the HTML entity for the utf-8 pencil character (✎) */}
         <div className={
-          this.state.showDetails? "card__title card__title--is-open" : "card__title"
+          this.props.showDetails !== false? "card__title card__title--is-open" : "card__title"
         } onClick={this.toggleDetails.bind(this)}>{this.props.title}</div>
         <TransitionGroup>
           {cardDetails}
@@ -109,6 +103,7 @@ class Card extends Component {
 Card.propTypes = {
   id: PropTypes.number,
   title: titlePropType,
+  showDetails: PropTypes.bool,
   description: PropTypes.string,
   color: PropTypes.string,
   tasks: PropTypes.arrayOf(PropTypes.object),

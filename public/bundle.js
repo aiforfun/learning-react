@@ -7654,7 +7654,7 @@
 
 	var _NewCard2 = _interopRequireDefault(_NewCard);
 
-	var _EditCard = __webpack_require__(603);
+	var _EditCard = __webpack_require__(604);
 
 	var _EditCard2 = _interopRequireDefault(_EditCard);
 
@@ -21480,6 +21480,7 @@
 	          id: card.id,
 	          title: card.title,
 	          status: card.status,
+	          showDetails: card.showDetails,
 	          description: card.description,
 	          color: card.color,
 	          tasks: card.tasks });
@@ -21608,15 +21609,12 @@
 	    _classCallCheck(this, Card);
 
 	    _get(Object.getPrototypeOf(Card.prototype), 'constructor', this).apply(this, arguments);
-	    this.state = {
-	      showDetails: true
-	    };
 	  }
 
 	  _createClass(Card, [{
 	    key: 'toggleDetails',
 	    value: function toggleDetails() {
-	      this.setState({ showDetails: !this.state.showDetails });
+	      _actionsCardActionCreators2['default'].toggleCardDetails(this.props.id);
 	    }
 	  }, {
 	    key: 'render',
@@ -21626,7 +21624,7 @@
 	      var connectDropTarget = _props.connectDropTarget;
 
 	      var cardDetails = undefined;
-	      if (this.state.showDetails) {
+	      if (this.props.showDetails !== false) {
 	        cardDetails = _react2['default'].createElement(
 	          _reactTransitionGroup.CSSTransition,
 	          {
@@ -21665,7 +21663,7 @@
 	        ),
 	        _react2['default'].createElement(
 	          'div',
-	          { className: this.state.showDetails ? "card__title card__title--is-open" : "card__title", onClick: this.toggleDetails.bind(this) },
+	          { className: this.props.showDetails !== false ? "card__title card__title--is-open" : "card__title", onClick: this.toggleDetails.bind(this) },
 	          this.props.title
 	        ),
 	        _react2['default'].createElement(
@@ -21683,6 +21681,7 @@
 	Card.propTypes = {
 	  id: _propTypes2['default'].number,
 	  title: titlePropType,
+	  showDetails: _propTypes2['default'].bool,
 	  description: _propTypes2['default'].string,
 	  color: _propTypes2['default'].string,
 	  tasks: _propTypes2['default'].arrayOf(_propTypes2['default'].object),
@@ -32728,6 +32727,9 @@
 	  PERSIST_CARD_DRAG_SUCCESS: 'persist card drag success',
 	  PERSIST_CARD_DRAG_ERROR: 'persist card drag error',
 
+	  CREATE_DRAFT: 'create draft',
+	  UPDATE_DRAFT: 'update draft',
+
 	  CREATE_TASK: 'create task',
 	  CREATE_TASK_SUCCESS: 'create task success',
 	  CREATE_TASK_ERROR: 'create task error',
@@ -32769,7 +32771,9 @@
 
 	var KanbanAPI = {
 	  fetchCards: function fetchCards() {
-	    return fetch(API_URL + '/cards', { headers: API_HEADERS }).then(function (response) {
+	    return fetch(API_URL + '/cards', { headers: API_HEADERS })
+	    //return fetch(`/kanban.json`, {headers: API_HEADERS})
+	    .then(function (response) {
 	      return response.json();
 	    });
 	  },
@@ -34597,6 +34601,20 @@
 	      success: _constants2['default'].PERSIST_CARD_DRAG_SUCCESS,
 	      failure: _constants2['default'].PERSIST_CARD_DRAG_ERROR
 	    }, { cardProps: cardProps });
+	  },
+
+	  createDraft: function createDraft(card) {
+	    _AppDispatcher2['default'].dispatch({
+	      type: _constants2['default'].CREATE_DRAFT,
+	      payload: { card: card }
+	    });
+	  },
+
+	  updateDraft: function updateDraft(field, value) {
+	    _AppDispatcher2['default'].dispatch({
+	      type: _constants2['default'].UPDATE_DRAFT,
+	      payload: { field: field, value: value }
+	    });
 	  }
 	};
 
@@ -36493,8 +36511,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
@@ -36515,6 +36531,12 @@
 
 	var _actionsCardActionCreators2 = _interopRequireDefault(_actionsCardActionCreators);
 
+	var _storesDraftStore = __webpack_require__(603);
+
+	var _storesDraftStore2 = _interopRequireDefault(_storesDraftStore);
+
+	var _fluxUtils = __webpack_require__(587);
+
 	var NewCard = (function (_Component) {
 	  _inherits(NewCard, _Component);
 
@@ -36522,29 +36544,23 @@
 	    _classCallCheck(this, NewCard);
 
 	    _get(Object.getPrototypeOf(NewCard.prototype), 'constructor', this).apply(this, arguments);
-	    this.state = {
-	      id: Date.now(),
-	      title: '',
-	      description: '',
-	      status: 'todo',
-	      color: '#c9c9c9',
-	      tasks: []
-	    };
 	  }
 
 	  _createClass(NewCard, [{
 	    key: 'componentWillMount',
-	    value: function componentWillMount() {}
+	    value: function componentWillMount() {
+	      _actionsCardActionCreators2['default'].createDraft();
+	    }
 	  }, {
 	    key: 'handleChange',
 	    value: function handleChange(field, value) {
-	      this.setState(_defineProperty({}, field, value));
+	      _actionsCardActionCreators2['default'].updateDraft(field, value);
 	    }
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-	      _actionsCardActionCreators2['default'].addCard(this.state);
+	      _actionsCardActionCreators2['default'].addCard(this.state.draft);
 	      this.props.history.push('/');
 	    }
 	  }, {
@@ -36555,7 +36571,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2['default'].createElement(_CardForm2['default'], { draftCard: this.state,
+	      return _react2['default'].createElement(_CardForm2['default'], { draftCard: this.state.draft,
 	        buttonLabel: 'Create Card',
 	        handleChange: this.handleChange.bind(this),
 	        handleSubmit: this.handleSubmit.bind(this),
@@ -36570,7 +36586,16 @@
 	  props: _propTypes2['default'].object
 	};
 
-	exports['default'] = NewCard;
+	NewCard.getStores = function () {
+	  return [_storesDraftStore2['default']];
+	};
+	NewCard.calculateState = function (prevState) {
+	  return {
+	    draft: _storesDraftStore2['default'].getState()
+	  };
+	};
+
+	exports['default'] = _fluxUtils.Container.create(NewCard);
 	module.exports = exports['default'];
 
 /***/ }),
@@ -36736,8 +36761,6 @@
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -36745,6 +36768,97 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _AppDispatcher = __webpack_require__(251);
+
+	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
+
+	var _constants = __webpack_require__(580);
+
+	var _constants2 = _interopRequireDefault(_constants);
+
+	var _fluxUtils = __webpack_require__(587);
+
+	var _immutabilityHelper = __webpack_require__(600);
+
+	var _immutabilityHelper2 = _interopRequireDefault(_immutabilityHelper);
+
+	//React Immutability Helper
+
+	var defaultDraft = function defaultDraft() {
+	  return {
+	    id: Date.now(),
+	    title: '',
+	    description: '',
+	    status: 'todo',
+	    color: '#c9c9c9',
+	    tasks: []
+	  };
+	};
+
+	var DraftStore = (function (_ReduceStore) {
+	  _inherits(DraftStore, _ReduceStore);
+
+	  function DraftStore() {
+	    _classCallCheck(this, DraftStore);
+
+	    _get(Object.getPrototypeOf(DraftStore.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(DraftStore, [{
+	    key: 'getInitialState',
+	    value: function getInitialState() {
+	      return {};
+	    }
+	  }, {
+	    key: 'reduce',
+	    value: function reduce(state, action) {
+	      switch (action.type) {
+	        case _constants2['default'].CREATE_DRAFT:
+	          if (action.payload.card) {
+	            return (0, _immutabilityHelper2['default'])(this.getState(), {
+	              $set: action.payload.card
+	            });
+	          } else {
+	            return defaultDraft();
+	          }
+	        case _constants2['default'].UPDATE_DRAFT:
+	          return (0, _immutabilityHelper2['default'])(this.getState(), _defineProperty({}, action.payload.field, {
+	            $set: action.payload.value
+	          }));
+
+	        default:
+	          return state;
+
+	      }
+	    }
+	  }]);
+
+	  return DraftStore;
+	})(_fluxUtils.ReduceStore);
+
+	exports['default'] = new DraftStore(_AppDispatcher2['default']);
+	module.exports = exports['default'];
+
+/***/ }),
+/* 604 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
@@ -36770,6 +36884,12 @@
 
 	var _actionsCardActionCreators2 = _interopRequireDefault(_actionsCardActionCreators);
 
+	var _storesDraftStore = __webpack_require__(603);
+
+	var _storesDraftStore2 = _interopRequireDefault(_storesDraftStore);
+
+	var _fluxUtils = __webpack_require__(587);
+
 	var EditCard = (function (_Component) {
 	  _inherits(EditCard, _Component);
 
@@ -36782,20 +36902,19 @@
 	  _createClass(EditCard, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      var card = _storesCardStore2['default'].getCard(parseInt(this.props.match.params.card_id));
-	      this.setState(_extends({}, card));
+	      _actionsCardActionCreators2['default'].createDraft(_storesCardStore2['default'].getCard(this.props.match.params.card_id));
 	    }
 	  }, {
 	    key: 'handleChange',
 	    value: function handleChange(field, value) {
-	      this.setState(_defineProperty({}, field, value));
+	      _actionsCardActionCreators2['default'].updateDraft(field, value);
 	    }
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      var card = _storesCardStore2['default'].getCard(parseInt(this.props.match.params.card_id));
-	      _actionsCardActionCreators2['default'].updateCard(card, this.state);
+	      _actionsCardActionCreators2['default'].updateCard(card, this.state.draft);
 	      this.props.history.push('/');
 	    }
 	  }, {
@@ -36806,7 +36925,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2['default'].createElement(_CardForm2['default'], { draftCard: this.state,
+	      return _react2['default'].createElement(_CardForm2['default'], { draftCard: this.state.draft,
 	        buttonLabel: 'Edit Card',
 	        handleChange: this.handleChange.bind(this),
 	        handleSubmit: this.handleSubmit.bind(this),
@@ -36821,7 +36940,16 @@
 	  props: _propTypes2['default'].object
 	};
 
-	exports['default'] = EditCard;
+	EditCard.getStores = function () {
+	  return [_storesDraftStore2['default']];
+	};
+	EditCard.calculateState = function (prevState) {
+	  return {
+	    draft: _storesDraftStore2['default'].getState()
+	  };
+	};
+
+	exports['default'] = _fluxUtils.Container.create(EditCard);
 	module.exports = exports['default'];
 
 /***/ })

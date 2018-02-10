@@ -13,6 +13,7 @@ const API_HEADERS = {
 let KanbanAPI = {
   fetchCards() {
     return fetch(`${API_URL}/cards`, {headers: API_HEADERS})
+    //return fetch(`/kanban.json`, {headers: API_HEADERS})
       .then((response) => response.json());
   },
 
