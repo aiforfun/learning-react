@@ -1,39 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
+import Clock from './Clock';
 
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-  componentWillUnmount() {
-    clearInterval(this.timerID);
+class App extends Component {
+  constructor(){
+    super(...arguments);
+    this.state = this.getTime();
   }
 
-  tick() {
-    this.setState({
-      date: new Date()
-    });
+  componentDidMount(){
+    setInterval(() => {
+      this.setState(this.getTime());
+    },500);
   }
 
-  render() {
+  getTime(){
+    let now = new Date(); return {
+      hours: now.getHours(),
+      minutes: now.getMinutes(),
+      seconds: now.getSeconds()
+    };
+  }
+
+  render(){
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <Clock hours={this.state.hours}
+               minutes={this.state.minutes}
+               seconds={this.state.seconds} />
       </div>
     );
   }
+
 }
 
-render(
-  <Clock />,
-  document.getElementById('root')
-);
-//setInterval(tick, 1000);
+render(<App />, document.getElementById("root"));
